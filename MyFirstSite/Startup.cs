@@ -24,19 +24,19 @@ namespace MyFirstSite
         public Startup(IConfiguration configuration) => Configuration = configuration;
         public void ConfigureServices(IServiceCollection services)
         {
-            //Добавляем конфиг из аппсеттингс
+            // Добавляем конфиг из аппсеттингс
             Configuration.Bind("Project", new Config());
 
-            //Подключаем нужный функционал
+            // Подключаем нужный функционал
             services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
             services.AddTransient<IServiceItemsRepository, EFServiceItemsRepository>();
             services.AddTransient<DataManager>();
 
-            //Подключение контекста БД
+            // Подключение контекста БД
             services.AddDbContext<AppDbContext>(x => x.UseNpgsql(Config.ConnectionString));
             //services.AddDbContext<AppDbContext>(x => x.UseNpgsql("Host=localhost;Database=bd_one; Username=postgres;Password=sa;"));
 
-            //Настройка идентификации
+            // Настройка идентификации
             services.AddIdentity<IdentityUser, IdentityRole>(opts => {
                 opts.User.RequireUniqueEmail = true;
                 opts.Password.RequiredLength = 6;
@@ -46,7 +46,7 @@ namespace MyFirstSite
                 opts.Password.RequireDigit = false;
             } ).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
-            //Настройка идент сокетов?
+            // Настройка идент сокетов?
             services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.Name = "myCompanyAuth";
@@ -56,20 +56,23 @@ namespace MyFirstSite
                 options.SlidingExpiration = true;
             });
 
-            // Добавил поддержку контроллеров для представлений
-            services.AddControllersWithViews()
-            // Добавляю поддержку версии?
-            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0).AddSessionStateTempDataProvider();
-
-            //Настройка политики авторизации для админов
-            services.AddAuthorization(x =>
-            {
-                x.AddPolicy("AdminArea", policy => { policy.RequireRole("admin"); });
-            });
-
             
            
 
+            // Настройка политики авторизации для админов
+            services.AddAuthorization(x =>
+            {
+               x.AddPolicy("AdminArea", policy => { policy.RequireRole("admin"); });
+            });
+
+            // Сервисы для MVC(Представления и контроллеры). Добавление
+            services.AddControllersWithViews(x =>
+            {
+                x.Conventions.Add(new AdminAreaAuthorization("Admin", "AdminArea"));
+            })
+
+            // Добавляю поддержку версии?
+            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0).AddSessionStateTempDataProvider();
 
 
 
@@ -77,8 +80,8 @@ namespace MyFirstSite
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //Влад, не забывай про ошибки, твою мать! Порядок регистрации важен -_-!!!!!!!!!!!!!!!!!!!!
-            //Возможность чекать ошибки
+            // Влад, не забывай про ошибки, твою мать! Порядок регистрации важен -_-!!!!!!!!!!!!!!!!!!!!
+            // Возможность чекать ошибки
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -87,10 +90,10 @@ namespace MyFirstSite
             // Подключение поддержки статичных файлов в конфигурации
             app.UseStaticFiles();
 
-            //Маршруты
+            // Маршруты
             app.UseRouting();
 
-            //Подключение авторизации, куки, аутентификации. Эта херня подключается между использованием маршрутов и их определением
+            // Подключение авторизации, куки, аутентификации. Эта херня подключается между использованием маршрутов и их определением
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -99,7 +102,7 @@ namespace MyFirstSite
             // Регистрация нужных маршрутов (ендпоинтов)
              app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("фвьшт", "{area:exists}/{controller=Home}/{action=Index}/{id?}");//Маршрут для админа
+                endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");//Маршрут для админа
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}" );
             });
         }
