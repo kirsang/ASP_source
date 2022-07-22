@@ -43,6 +43,7 @@ namespace MyFirstSite.Domain
                 RoleId = "4E89F435-FE3D-4131-91EF-4823FECDF34D",
                 UserId = "DA8E4E71-BB7E-4AF3-8DED-8842DD17A32C"
             });
+
             modelBuilder.Entity<TextField>().HasData(new TextField
             {
                 Id = new Guid("CBBE7CA1-0B25-4440-AB9C-81BC4831FEF3"),
@@ -53,13 +54,13 @@ namespace MyFirstSite.Domain
             {
                 Id = new Guid("5C9653FD-15A7-4F46-BB28-C3310E4824FF"),
                 CodeWord = "PageServices",
-                Title = "Главная"
+                Title = "Наши услуги"
             });
             modelBuilder.Entity<TextField>().HasData(new TextField
             {
                 Id = new Guid("550A4F12-5598-4A00-AF03-54AC6D530677"),
-                CodeWord = "PageContaxt",
-                Title = "Главная"
+                CodeWord = "PageContacts",
+                Title = "Контакты"
             });
         }
 

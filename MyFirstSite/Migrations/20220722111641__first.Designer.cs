@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyFirstSite.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220718094546_OneMigr")]
-    partial class OneMigr
+    [Migration("20220722111641__first")]
+    partial class _first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,7 +50,7 @@ namespace MyFirstSite.Migrations
                         new
                         {
                             Id = "4E89F435-FE3D-4131-91EF-4823FECDF34D",
-                            ConcurrencyStamp = "e802a22f-08d2-4486-84df-318036ce9841",
+                            ConcurrencyStamp = "3db7468a-071d-4350-af8c-51d186e23577",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -148,13 +148,13 @@ namespace MyFirstSite.Migrations
                         {
                             Id = "DA8E4E71-BB7E-4AF3-8DED-8842DD17A32C",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d8261886-cff0-4741-926d-843d1c9081c1",
+                            ConcurrencyStamp = "698efcec-b671-412a-ac4e-0812afc67ede",
                             Email = "sapog@vaska.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "SAPOG@VASKA.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFgrr2ofBYzQj7rgdefyv8Dw7JIxMKWiufuBKg1ad9ZDRCu3Js/b18P1JIJI1LglZw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL8D9tjqSc0VFRMOzhxdgsH721ZdagL1ia0Zt0eRcKrZXWBstDlN2T31tANf47nWLA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -328,7 +328,7 @@ namespace MyFirstSite.Migrations
                         {
                             Id = new Guid("cbbe7ca1-0b25-4440-ab9c-81bc4831fef3"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2022, 7, 18, 9, 45, 46, 153, DateTimeKind.Utc).AddTicks(5860),
+                            DateAdded = new DateTime(2022, 7, 22, 11, 16, 40, 705, DateTimeKind.Utc).AddTicks(1760),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
@@ -336,17 +336,17 @@ namespace MyFirstSite.Migrations
                         {
                             Id = new Guid("5c9653fd-15a7-4f46-bb28-c3310e4824ff"),
                             CodeWord = "PageServices",
-                            DateAdded = new DateTime(2022, 7, 18, 9, 45, 46, 154, DateTimeKind.Utc).AddTicks(1278),
+                            DateAdded = new DateTime(2022, 7, 22, 11, 16, 40, 705, DateTimeKind.Utc).AddTicks(4397),
                             Text = "Содержание заполняется администратором",
-                            Title = "Главная"
+                            Title = "Наши услуги"
                         },
                         new
                         {
                             Id = new Guid("550a4f12-5598-4a00-af03-54ac6d530677"),
-                            CodeWord = "PageContaxt",
-                            DateAdded = new DateTime(2022, 7, 18, 9, 45, 46, 154, DateTimeKind.Utc).AddTicks(1497),
+                            CodeWord = "PageContacts",
+                            DateAdded = new DateTime(2022, 7, 22, 11, 16, 40, 705, DateTimeKind.Utc).AddTicks(4505),
                             Text = "Содержание заполняется администратором",
-                            Title = "Главная"
+                            Title = "Контакты"
                         });
                 });
 

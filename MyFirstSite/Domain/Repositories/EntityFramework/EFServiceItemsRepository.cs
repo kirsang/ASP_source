@@ -16,7 +16,7 @@ namespace MyFirstSite.Domain.Repositories.EntityFramework
             this.context = context;
         }
 
-        public IQueryable<ServiceItem> GetServiceItems()
+        public IQueryable<ServiceItem> GetServiceItem()
         {
             return context.ServiceItems;
         }
@@ -26,7 +26,7 @@ namespace MyFirstSite.Domain.Repositories.EntityFramework
         }
         public void SaveServiceItem(ServiceItem entity)
         {
-            if (entity == default)
+            if (entity.Id == default)
             {
                 context.Entry(entity).State = EntityState.Added;
             }
@@ -42,14 +42,14 @@ namespace MyFirstSite.Domain.Repositories.EntityFramework
             context.SaveChanges();
         }
 
-        public IQueryable<ServiceItem> GetServiceItem()
-        {
-            throw new NotImplementedException();
-        }
+        //public IQueryable<ServiceItem> GetServiceItem()
+        //{
+        //    return context.ServiceItems;
+        //}
 
-        public ServiceItem GetTextFieldById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        //public ServiceItem GetTextFieldById(Guid id)
+        //{
+        //    return context.ServiceItems.FirstOrDefault(x => x.Id == id);
+        //}
     }
 }

@@ -51,7 +51,7 @@ namespace MyFirstSite
             {
                 options.Cookie.Name = "myCompanyAuth";
                 options.Cookie.HttpOnly = true;
-                options.LoginPath = "/account/login";
+                options.LoginPath = "/Account/Login";
                 options.AccessDeniedPath = "/account/accessdenied";
                 options.SlidingExpiration = true;
             });
